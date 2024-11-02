@@ -3,6 +3,7 @@ import type { Preview } from "@storybook/react";
 import { themes } from '@storybook/theming';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../src/styles/theme';
+import "@fontsource/roboto-slab";
 
 const preview: Preview = {
 	parameters: {

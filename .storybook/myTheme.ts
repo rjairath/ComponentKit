@@ -16,7 +16,7 @@ export default create({
 	// UI Colors
 	appBg: "#2D2F33",         // Dark gray background to reduce glare
 	appContentBg: "#1E2022",  // Darker gray for content background
-	appPreviewBg: "#4A4D52",  // Matching dark gray for preview area
+	appPreviewBg: "#F3F4F6",  // Matching dark gray for preview area
 	appBorderColor: "#3A3D41", // Dark border to keep contrast without harshness
 	appBorderRadius: 6,       // Keeps a modern rounded aesthetic
 

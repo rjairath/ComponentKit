@@ -51,3 +51,12 @@ export const WithIcon: Story = {
         iconPosition: "left"
     },
 };
+
+export const LoadingButton: Story = {
+    args: {
+        text: "Loading Button",
+        primary: true,
+        disabled: false,
+        size: "medium",
+    },
+};

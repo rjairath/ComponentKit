@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import styled, { useTheme, DefaultTheme } from 'styled-components';
+import styled, { useTheme, DefaultTheme, keyframes } from 'styled-components';
 
 export interface ButtonProps {
     text?: string;
@@ -11,6 +11,7 @@ export interface ButtonProps {
     theme?: DefaultTheme;
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
+    confirmLoading?: boolean;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -55,6 +56,20 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const Spinner = styled.div`
+    border: ${props => `2px solid ${props.theme.colors.text}`};
+    border-top: ${props => `2px solid ${props.theme.colors.accent}`};
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: ${spin} 1s linear infinite;
+`;
+
 const Button: React.FC<ButtonProps> = ({
     text,
     size,
@@ -64,6 +79,7 @@ const Button: React.FC<ButtonProps> = ({
     handleClick,
     icon,
     iconPosition = 'left',
+    confirmLoading,
     ...props
 }) => {
   const theme = useTheme();
@@ -79,7 +95,7 @@ const Button: React.FC<ButtonProps> = ({
         {...props}
     >
         {icon && <span style={{ display: "flex" }}>{icon}</span>}
-        <span>{text}</span>
+        {confirmLoading ? <Spinner theme={theme}/> : <span>{text}</span>}
     </StyledButton>
   )
 }
