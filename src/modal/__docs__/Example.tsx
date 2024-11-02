@@ -22,17 +22,24 @@ const Example: React.FC<ModalProps> = ({
         }, 2000);
     }
 
-    if(headerTitle === 'Async Modal') {
-        footer = <div>
-            <Button 
-                handleClick={handleAsyncOk}
-                text="OK"
-                size="small"
-                primary={true}
-                confirmLoading={confirmLoading}
-            />
-        </div>
-    }
+	const renderFooter = () => {
+		if(footer) {
+			return footer;
+		} 
+		if(headerTitle === 'Async Modal') {
+			return (
+				<div>
+					<Button
+						handleClick={handleAsyncOk}
+						text="OK"
+						size="small"
+						primary={true}
+						confirmLoading={confirmLoading}
+					/>
+				</div>
+			);
+		}
+	}
 
 	return (
 		<>
@@ -47,7 +54,7 @@ const Example: React.FC<ModalProps> = ({
 				onClose={() => setIsOpen(false)}
 				headerTitle={headerTitle}
 				contentChildren={contentChildren}
-				footer={footer}
+				footer={renderFooter()}
 			/>
 		</>
 	);

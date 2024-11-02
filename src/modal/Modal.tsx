@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { createPortal } from 'react-dom';
 import styled, { DefaultTheme, useTheme } from "styled-components";
 
 export interface ModalProps {
@@ -81,7 +82,7 @@ const Modal: React.FC<ModalProps> = ({
         return null;
     }
 
-    return (
+    return createPortal(
         <Overlay theme={theme}>
             <ModalContent ref={modalRef}>
                 <Header>
@@ -91,7 +92,8 @@ const Modal: React.FC<ModalProps> = ({
                 <div>{contentChildren}</div>
                 {footer && <Footer>{footer}</Footer>}
             </ModalContent>
-        </Overlay>
+        </Overlay>,
+        document.body
     )
 }
 

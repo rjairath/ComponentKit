@@ -20,7 +20,7 @@ export const Basic: Story = {
         </div>,
         footer: <Button 
             handleClick={() => console.log('Footer Action')}
-            text="OK"
+            text="Confirm"
             size="small"
             primary={true}
         >
