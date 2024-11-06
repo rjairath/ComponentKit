@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from 'react-dom';
-import styled, { DefaultTheme, useTheme } from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 export interface ModalProps {
     isOpen: boolean;
