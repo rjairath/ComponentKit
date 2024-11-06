@@ -1,6 +1,7 @@
-import React from 'react';
-import styled, { useTheme } from "styled-components";
+import React, { useRef } from 'react';
+import styled from "styled-components";
 import { useCarousel } from './useCarousel';
+import { LazyImage } from '../lazyImage';
 
 export interface CarouselProps {
     imageList: string[];
@@ -25,14 +26,6 @@ const ImageWrapper = styled.div<{ currentIndex: number, transitionDuration?: num
     display: flex;
     transition: ${props => `transform ${props.transitionDuration}ms ease`};
     transform: ${(props) => `translateX(-${props.currentIndex * 100}%)`};
-`;
-
-// CarouselImage: Styles for each image in the carousel
-const CarouselImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    flex-shrink: 0;
 `;
 
 const NavButton = styled.button<{ direction: 'left' | 'right' }>`
@@ -86,16 +79,24 @@ const Carousel: React.FC<CarouselProps> = ({
         prevImage,
         showImage
     } = useCarousel(imageList, autoPlay, transitionDuration);
-
-	return <CarouselContainer width={width} height={height}>
+    const carouselRef = useRef(null);
+    
+	return <CarouselContainer width={width} height={height} ref={carouselRef}>
         <ImageWrapper currentIndex={currentIndex} transitionDuration={transitionDuration}>
             {
                 imageList?.map((image, index) => (
-                    <CarouselImage 
+                    <LazyImage 
                         src={image}
-                        alt={`carousel-img-${index+1}`}
+                        placeholder='/placeholder.png'
+                        root={carouselRef.current}
+                        imageStyles={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            flexShrink: 0,
+                        }}
+                        rootMargin='-10px'
                         key={index}
-                        loading="lazy"
                     />
                 ))
             }
