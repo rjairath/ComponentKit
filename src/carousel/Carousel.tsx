@@ -95,7 +95,7 @@ const Carousel: React.FC<CarouselProps> = ({
                             objectFit: 'cover',
                             flexShrink: 0,
                         }}
-                        rootMargin='-10px'
+                        rootMargin='100%'
                         key={index}
                     />
                 ))
